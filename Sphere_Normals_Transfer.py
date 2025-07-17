@@ -23,10 +23,6 @@ def Sphere_Normals_Transfer():
 
     bpy.context.area.ui_type = 'VIEW_3D'  #set active window
 
-    for obj in bpy.context.view_layer.objects:  #select objects with materials = mat_num
-        if len(obj.material_slots) == mat_num:
-            bpy.context.view_layer.objects.active = obj
-
     # Set object and mesh
     active_obj = bpy.context.active_object 
     mesh = active_obj.data
@@ -34,8 +30,8 @@ def Sphere_Normals_Transfer():
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.mesh.select_all(action='DESELECT')
 
-    # Select leaves material
-    bpy.context.object.active_material_index = leaves_num-1
+    # Select leaves material (first material)
+    bpy.context.object.active_material_index = 1
     bpy.ops.object.material_slot_select()
 
     bpy.ops.view3d.snap_cursor_to_selected()  #cursor center of all leaves
